@@ -635,6 +635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cf48f946805994f925a1a6902f446d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerName: []
+  Round: 0
+  CurrentHighScore: 0
+  HighScore: 
+  TextToDisplay: []
 --- !u!1 &1077008387
 GameObject:
   m_ObjectHideFlags: 0

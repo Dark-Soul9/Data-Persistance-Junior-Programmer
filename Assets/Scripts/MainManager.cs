@@ -12,13 +12,14 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
     public GameObject GameOverText;
     public TMP_InputField EnterName;
     
     private bool m_Started = false;
     private int m_Points;
     
-    private bool m_GameOver = false;
+    public bool m_GameOver = false;
 
     
     // Start is called before the first frame update
@@ -26,8 +27,8 @@ public class MainManager : MonoBehaviour
     {
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
-        
         int[] pointCountArray = new [] {1,1,2,2,5,5};
+        HighScoreText.text = "HighScore: 0";
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
@@ -74,11 +75,23 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        EnterName.gameObject.SetActive(true);
+        if(MenuManager.Instance.ScoreCompare(m_Points))
+        {
+            HighScoreText.text = "New HighScore: " + m_Points + " !";
+            EnterName.gameObject.SetActive(true);
+        }
     }
 
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void SendName()
+    {
+        string name = EnterName.text;
+        int score = m_Points;
+        MenuManager.Instance.AddName(name, score);
+        EnterName.gameObject.SetActive(false);
     }
 }
