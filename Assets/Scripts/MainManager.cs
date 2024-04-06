@@ -58,6 +58,7 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
+            SaveAllData();
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -93,5 +94,11 @@ public class MainManager : MonoBehaviour
         int score = m_Points;
         MenuManager.Instance.AddName(name, score);
         EnterName.gameObject.SetActive(false);
+    }
+    public void SaveAllData()
+    {
+        MenuManager.Instance.SaveCurrentHighScore();
+        MenuManager.Instance.SaveName();
+        MenuManager.Instance.SaveScore();
     }
 }

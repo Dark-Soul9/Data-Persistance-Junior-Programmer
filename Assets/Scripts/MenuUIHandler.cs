@@ -18,6 +18,11 @@ public class MenuUIHandler : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void ResetHighScore()
+    {
+        MenuManager.Instance.ResetScore();
+    }
     public void Quit()
     {
 #if UNITY_EDITOR
